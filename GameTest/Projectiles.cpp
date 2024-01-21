@@ -80,6 +80,10 @@ void Projectiles::SetSpeed(float newSpeed) {
 	speed = newSpeed;
 }
 
+void Projectiles::SetSpeedY(float newSpeedY) {
+	speedY = newSpeedY;
+}
+
 bool Projectiles::GetAirborn()
 {
 	return inAir;
@@ -119,20 +123,26 @@ float Projectiles::InitialAngle() {
 	return angle;
 }
 
+void Projectiles::SetAngle(float newAngle) {
+	initialAngle = newAngle;
+}
+
 void Projectiles::BulletTravel() {
 	if (inAir) {
+		CheckOutOfBounds();
 		DrawBullets();
 		posX += speed * cosf(initialAngle);
 		posY += speedY;
 		speedY -= 0.05f;
 		//string leftStr=std::to_string(speedY);
 		//OutputDebugStringA(leftStr.c_str());
-		CheckOutOfBounds();
+		
 	}
 }
 
 void Projectiles::CheckOutOfBounds() {
 	if (posX <= 0 || posX >= APP_VIRTUAL_WIDTH || posY <= 0 || posY >= APP_VIRTUAL_HEIGHT) {
 		inAir = false;
+		printf("Hi");
 	}
 }

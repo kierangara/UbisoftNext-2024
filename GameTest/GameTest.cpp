@@ -7,15 +7,16 @@
 #include <math.h>  
 //------------------------------------------------------------------------
 #include "app\app.h"
-#include "Projectiles.h"
-//#include "EnemyProjectiles.h"
-#include "Enemies.h"
+//#include "Projectiles.h"
+#include "EnemyProjectiles.h"
+//#include "Enemies.h"
+
 //------------------------------------------------------------------------
 #include <iostream> //debug
 using namespace std; //debug
 
 Projectiles projectile;
-//EnemyProjectiles eProjectile;
+EnemyProjectiles eProjectile;
 Enemies enemy;
 
 //------------------------------------------------------------------------
@@ -52,7 +53,7 @@ void Init()
 	//------------------------------------------------------------------------
 	// Bullet UI Initialisation
 	projectile.Init();
-	//eProjectile.Init();
+	eProjectile.Init();
 }
 
 //------------------------------------------------------------------------
@@ -147,7 +148,8 @@ void Render()
 	//------------------------------------------------------------------------
 	App::Print(100, 100, "Sample Text");
 	projectile.BulletTravel();
-	//eProjectile.Shoot(enemy);
+	eProjectile.Shoot(enemy, testSprite);
+	eProjectile.BulletTravel();
 
 	//------------------------------------------------------------------------
 	// Example Line Drawing.

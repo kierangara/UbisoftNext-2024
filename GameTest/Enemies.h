@@ -15,6 +15,6 @@ public:
 	void EnemyTravel();
 	float RandomNumber(int lowerBound, int upperBound);
 	void DrawSprite();
-	float GetEnemyPosition();
+	void GetEnemyPosition(float& x, float& y);
 };
 

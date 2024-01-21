@@ -183,6 +183,7 @@
     <ClInclude Include="App\SimpleSound.h" />
     <ClInclude Include="App\SimpleSprite.h" />
     <ClInclude Include="Enemies.h" />
+    <ClInclude Include="EnemyProjectiles.h" />
     <ClInclude Include="Projectiles.h" />
     <ClInclude Include="stb_image\stb_image.h" />
     <ClInclude Include="stdafx.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="App\SimpleSound.cpp" />
     <ClCompile Include="App\SimpleSprite.cpp" />
     <ClCompile Include="Enemies.cpp" />
+    <ClCompile Include="EnemyProjectiles.cpp" />
     <ClCompile Include="GameTest.cpp" />
     <ClCompile Include="Projectiles.cpp" />
     <ClCompile Include="stb_image\stb_image.cpp" />

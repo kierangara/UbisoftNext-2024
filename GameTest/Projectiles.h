@@ -30,10 +30,12 @@ public:
 	void SetTargetY(float y);
 	float GetSpeed();
 	void SetSpeed(float newSpeed);
+	void SetSpeedY(float newSpeedY);
 	bool GetAirborn();
 	void SetAirborn(bool airborn);
 	void BulletTravel();
 	float InitialAngle();
+	void SetAngle(float newAngle);
 	void CheckOutOfBounds();
 };
 

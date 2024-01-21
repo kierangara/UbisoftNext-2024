@@ -23,6 +23,7 @@
     </ClCompile>
     <ClCompile Include="Projectiles.cpp" />
     <ClCompile Include="Enemies.cpp" />
+    <ClCompile Include="EnemyProjectiles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -52,6 +53,7 @@
     </ClInclude>
     <ClInclude Include="Projectiles.h" />
     <ClInclude Include="Enemies.h" />
+    <ClInclude Include="EnemyProjectiles.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="stb_image">

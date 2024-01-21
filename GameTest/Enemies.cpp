@@ -21,8 +21,8 @@ void Enemies::MoveEnemy() {
 	if (newX - x <= 0) { 
 		angle += M_PI;
 	}
-	string leftStr2 = "Angle: " + std::to_string(angle) + " ";
-	OutputDebugStringA(leftStr2.c_str());
+	//string leftStr2 = "Angle: " + std::to_string(angle) + " ";
+	//OutputDebugStringA(leftStr2.c_str());
 }
 
 void Enemies::EnemyTravel() {
@@ -38,8 +38,8 @@ void Enemies::EnemyTravel() {
 		OutputDebugStringA(leftStr2.c_str());*/
 	}
 	else {
-		string leftStr = std::to_string(x);
-		OutputDebugStringA(leftStr.c_str());
+		//string leftStr = std::to_string(x);
+		//OutputDebugStringA(leftStr.c_str());
 		enemySprite->SetPosition(x + speed * cosf(angle), y + speed * sinf(angle));
 	}
 	DrawSprite();
@@ -61,8 +61,6 @@ void Enemies::DrawSprite() {
 	enemySprite->Draw();
 }
 
-float Enemies::GetEnemyPosition() {
-	float x, y;
+void Enemies::GetEnemyPosition(float& x, float& y) {
 	enemySprite->GetPosition(x, y);
-	return x, y;
 }

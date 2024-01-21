@@ -1,6 +1,6 @@
 #pragma once
 #include "App/app.h"
-#include "Enemies.h"
+//#include "Enemies.h"
 #include "Projectiles.h"
 
 class EnemyProjectiles: public Projectiles
@@ -25,5 +25,8 @@ public:
 	//void Init();
 	//void DrawBullets();
 	void Shoot(Enemies enemy, CSimpleSprite* target);
+	bool BulletControl(Enemies enemy, CSimpleSprite* target);
+	void GetAllyPosition(CSimpleSprite* target, float& allyX, float& allyY);
+	bool CheckHit(CSimpleSprite* target);
 };
 

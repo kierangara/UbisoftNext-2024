@@ -4,7 +4,8 @@ using namespace std; //debug
 
 
 void Enemies::Init() {
-	newX = 600.0f;
+	SetActiveState(true);
+	newX = 800.0f;
 	newY = 400.0f;
 	enemySprite = App::CreateSprite(".\\TestData\\Robot3.bmp", 1, 1);
 	enemySprite->SetPosition(newX, newY);
@@ -26,23 +27,25 @@ void Enemies::MoveEnemy() {
 }
 
 void Enemies::EnemyTravel() {
-	float x, y;
-	enemySprite->GetPosition(x, y);
-	if (abs(newX - x) < speed && abs(newY - y) < speed) {
-		//string leftStr = std::to_string(newX);
-		//OutputDebugStringA(leftStr.c_str());
-		MoveEnemy();
-		/*string leftStr = std::to_string(newX);
-		OutputDebugStringA(leftStr.c_str());
-		string leftStr2 = std::to_string(newY);
-		OutputDebugStringA(leftStr2.c_str());*/
+	if (IsActive()) {
+		float x, y;
+		enemySprite->GetPosition(x, y);
+		if (abs(newX - x) < speed && abs(newY - y) < speed) {
+			//string leftStr = std::to_string(newX);
+			//OutputDebugStringA(leftStr.c_str());
+			MoveEnemy();
+			/*string leftStr = std::to_string(newX);
+			OutputDebugStringA(leftStr.c_str());
+			string leftStr2 = std::to_string(newY);
+			OutputDebugStringA(leftStr2.c_str());*/
+		}
+		else {
+			//string leftStr = std::to_string(x);
+			//OutputDebugStringA(leftStr.c_str());
+			enemySprite->SetPosition(x + speed * cosf(angle), y + speed * sinf(angle));
+		}
+		DrawSprite();
 	}
-	else {
-		//string leftStr = std::to_string(x);
-		//OutputDebugStringA(leftStr.c_str());
-		enemySprite->SetPosition(x + speed * cosf(angle), y + speed * sinf(angle));
-	}
-	DrawSprite();
 }
 
 
@@ -63,4 +66,12 @@ void Enemies::DrawSprite() {
 
 void Enemies::GetEnemyPosition(float& x, float& y) {
 	enemySprite->GetPosition(x, y);
+}
+
+bool Enemies::IsActive() {
+	return active;
+}
+
+void Enemies::SetActiveState(bool activeState) {
+	active = activeState;
 }

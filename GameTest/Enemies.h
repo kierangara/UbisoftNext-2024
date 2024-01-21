@@ -8,6 +8,7 @@ class Enemies
 	float newX;
 	float newY;
 	float angle;
+	bool active;
 
 public:
 	void Init();
@@ -16,5 +17,7 @@ public:
 	float RandomNumber(int lowerBound, int upperBound);
 	void DrawSprite();
 	void GetEnemyPosition(float& x, float& y);
+	bool IsActive();
+	void SetActiveState(bool activeState);
 };
 

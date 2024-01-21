@@ -2,6 +2,7 @@
 // Projectiles.h
 //------------------------------------------------------------------------
 #include "app\app.h";
+#include "Enemies.h"
 
 
 class Projectiles
@@ -34,8 +35,10 @@ public:
 	bool GetAirborn();
 	void SetAirborn(bool airborn);
 	void BulletTravel();
+	int BulletControl(int numEnemies, Enemies enemies[5]);
 	float InitialAngle();
 	void SetAngle(float newAngle);
 	void CheckOutOfBounds();
+	int CheckHit(int numEnemies, Enemies enemy[5]);
 };
 

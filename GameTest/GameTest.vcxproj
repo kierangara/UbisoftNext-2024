@@ -184,6 +184,7 @@
     <ClInclude Include="App\SimpleSprite.h" />
     <ClInclude Include="Enemies.h" />
     <ClInclude Include="EnemyProjectiles.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Projectiles.h" />
     <ClInclude Include="stb_image\stb_image.h" />
     <ClInclude Include="stdafx.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="Enemies.cpp" />
     <ClCompile Include="EnemyProjectiles.cpp" />
     <ClCompile Include="GameTest.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectiles.cpp" />
     <ClCompile Include="stb_image\stb_image.cpp" />
     <ClCompile Include="stdafx.cpp">

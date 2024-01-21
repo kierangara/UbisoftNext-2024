@@ -99,8 +99,8 @@ void Projectiles::Shoot(CSimpleSprite *testSprite) {
 		float& mouseX = targetX;
 		float& mouseY = targetY;
 		App::GetMousePos(mouseX, mouseY);
-		string leftStr=std::to_string(targetX);
-		OutputDebugStringA(leftStr.c_str());
+		//string leftStr=std::to_string(targetX);
+		//OutputDebugStringA(leftStr.c_str());
 		//OutputDebugStringA("Left Click"); //debug
 		float x, y;
 		testSprite->GetPosition(x, y);
@@ -136,13 +136,41 @@ void Projectiles::BulletTravel() {
 		speedY -= 0.05f;
 		//string leftStr=std::to_string(speedY);
 		//OutputDebugStringA(leftStr.c_str());
-		
 	}
+}
+
+int Projectiles::BulletControl(int numEnemies, Enemies enemies[5]) {
+	BulletTravel();
+	return CheckHit(numEnemies, enemies);
 }
 
 void Projectiles::CheckOutOfBounds() {
 	if (posX <= 0 || posX >= APP_VIRTUAL_WIDTH || posY <= 0 || posY >= APP_VIRTUAL_HEIGHT) {
 		inAir = false;
-		printf("Hi");
 	}
 }
+
+int Projectiles::CheckHit(int numEnemies, Enemies enemies[5]) {
+	float enemyX, enemyY;
+	int botsActive = 0;
+	//string leftStr=std::to_string(sizeof(enemies)) + " ";
+	//OutputDebugStringA(leftStr.c_str());
+	//string leftStr = std::to_string(numEnemies) + " ";
+	//OutputDebugStringA(leftStr.c_str());
+	for (int i = 0; i < numEnemies; i++) {
+		if (enemies[i].IsActive()) {
+			enemies[i].GetEnemyPosition(enemyX, enemyY);
+			if (posX >= enemyX - 20 && posX <= enemyX + 30 && posY >= enemyY - 45 && posY <= enemyY + 55) {
+				SetAirborn(false);
+				enemies[i].SetActiveState(false);
+				posX = -1;
+			}
+			else {
+				botsActive += 1;
+			}
+		}
+		
+	}
+	return botsActive;
+}
+

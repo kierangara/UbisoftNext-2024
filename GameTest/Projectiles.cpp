@@ -2,7 +2,6 @@
 #include "Projectiles.h"
 #include "app\app.h"
 #include "math.h"
-using namespace std; //debug
 
 void Projectiles::Init() {
 	posX = -1;
@@ -16,8 +15,6 @@ void Projectiles::Init() {
 }
 
 void Projectiles::DrawBullets() {
-	//string leftStr=std::to_string(left);
-	//OutputDebugStringA(leftStr.c_str());
 	float r = 1.0f;
 	float g = 1.0f;
 	float b = 1.0f;
@@ -99,9 +96,6 @@ void Projectiles::Shoot(CSimpleSprite *testSprite) {
 		float& mouseX = targetX;
 		float& mouseY = targetY;
 		App::GetMousePos(mouseX, mouseY);
-		//string leftStr=std::to_string(targetX);
-		//OutputDebugStringA(leftStr.c_str());
-		//OutputDebugStringA("Left Click"); //debug
 		float x, y;
 		testSprite->GetPosition(x, y);
 		posX = x + 50;
@@ -134,8 +128,6 @@ void Projectiles::BulletTravel() {
 		posX += speed * cosf(initialAngle);
 		posY += speedY;
 		speedY -= 0.05f;
-		//string leftStr=std::to_string(speedY);
-		//OutputDebugStringA(leftStr.c_str());
 	}
 }
 
@@ -153,10 +145,7 @@ void Projectiles::CheckOutOfBounds() {
 int Projectiles::CheckHit(int numEnemies, Enemies enemies[5]) {
 	float enemyX, enemyY;
 	int botsActive = 0;
-	//string leftStr=std::to_string(sizeof(enemies)) + " ";
-	//OutputDebugStringA(leftStr.c_str());
-	//string leftStr = std::to_string(numEnemies) + " ";
-	//OutputDebugStringA(leftStr.c_str());
+	//Check all the enemies to see if hit any active ones, and determine how many are still active
 	for (int i = 0; i < numEnemies; i++) {
 		if (enemies[i].IsActive()) {
 			enemies[i].GetEnemyPosition(enemyX, enemyY);

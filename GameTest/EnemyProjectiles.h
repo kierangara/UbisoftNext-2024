@@ -6,27 +6,27 @@
 class EnemyProjectiles: public Projectiles
 {
 private:
+	//****************************************************************
+	// StateVariables
+	// ***************************************************************
+	//Distance and time for projectile to reach player
 	float xDistToTarget, yDistToTarget, timeToTarget;
+	//Start is enemy coordinates, final is player coordinates
 	float startX, startY, finalX, finalY;
+	//launch angle based on player location. angle 1 bigger, longer flight time. Not used in this implementation
 	float launchAngle1, launchAngle2;
+	//initial speed of projectile
 	float speed;
+	//downward deceleration
 	float gravity;
-	/*float posX;
-	float posY;
-	bool inAir;
-	float targetX;
-	float targetY;
-	float speed;
-	float speedY;
-	float initialAngle;
-	const float M_PI = 3.14159265358979323846f;*/
 
 public:
-	//void Init();
-	//void DrawBullets();
+	//Shoot projectile finding angle based on target (player) position
 	void Shoot(Enemies enemy, CSimpleSprite* target);
+	//track projectile to determine if active and if hits. Return true if hit
 	bool BulletControl(Enemies enemy, CSimpleSprite* target);
 	void GetAllyPosition(CSimpleSprite* target, float& allyX, float& allyY);
+	//Check for bullet hitting player, return true if hit
 	bool CheckHit(CSimpleSprite* target);
 };
 

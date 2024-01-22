@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
-using namespace std; //debug
 
 void Player::Init() {
-	//numEnemies = 5;
 	health = 10;
 	stage = 0;
 	botsRemaining = 0;
@@ -15,13 +13,10 @@ void Player::Init() {
 	playerSprite->CreateAnimation(ANIM_RIGHT, speed, { 16,17,18,19,20,21,22,23 });
 	playerSprite->CreateAnimation(ANIM_FORWARDS, speed, { 24,25,26,27,28,29,30,31 });
 	playerSprite->SetScale(1.0f);
-	//enemies[0].Init();
-	//enemies[1].Init();
 	//------------------------------------------------------------------------
 	// Bullet UI Initialisation
 	projectile.Init();
-	//eProjectile[0].Init();
-	//eProjectile[1].Init();
+
 	
 }
 
@@ -37,6 +32,7 @@ void Player::StartStage() {
 
 void Player::Update(float deltaTime) {
 	playerSprite->Update(deltaTime);
+	//move player controls
 	if (App::GetController().GetLeftThumbStickX() > 0.5f)
 	{
 		playerSprite->SetAnimation(ANIM_RIGHT);
@@ -77,6 +73,7 @@ void Player::Update(float deltaTime) {
 			playerSprite->SetPosition(x, y);
 		}
 	}
+	//Sprite rotation controls
 	if (App::GetController().CheckButton(XINPUT_GAMEPAD_DPAD_UP, false))
 	{
 		playerSprite->SetScale(playerSprite->GetScale() + 0.1f);
@@ -97,14 +94,17 @@ void Player::Update(float deltaTime) {
 	{
 		playerSprite->SetAnimation(-1);
 	}
+	//Shoot controls
 	if (App::IsKeyPressed(VK_LBUTTON) && !projectile.GetAirborn())
 	{
 		projectile.Shoot(playerSprite);
 	}
+	//restart controls
 	if (App::IsKeyPressed('R') && (health<=0 || (botsRemaining <= 0 && stage == numEnemies)))
 	{
 		Init();
 	}
+	//start stage controls
 	if (App::IsKeyPressed(VK_SPACE) && botsRemaining <= 0 && stage!=numEnemies)
 	{
 		StartStage();
@@ -112,10 +112,13 @@ void Player::Update(float deltaTime) {
 }
 
 void Player::Render() {
-	string leftStr = "Bots:" + std::to_string(botsRemaining) + " ";
-	OutputDebugStringA(leftStr.c_str());
+	//Display instructions baseed on stage
 	if (botsRemaining <= 0) {
 		if (stage < numEnemies-1) {
+			App::Print(50, 700, "Use WASD to move");
+			App::Print(50, 670, "Avoid enemy projectiles");
+			App::Print(50, 640, "Aim with your mouse, left click to FIRE");
+			App::Print(50, 610, ("Survive all " + std::to_string(numEnemies) + " stages to win!").c_str());
 			App::Print(475, 600, ("Stage: " + std::to_string(stage + 1)).c_str());
 			App::Print(425, 550, "Press SPACE to start");
 		}
@@ -129,6 +132,7 @@ void Player::Render() {
 		}
 		
 	}
+	//handle projectile movement and collisions
 	if (health>0) {
 		playerSprite->Draw();
 		botsRemaining = projectile.BulletControl(numEnemies, enemies);
@@ -144,6 +148,7 @@ void Player::Render() {
 		App::Print(100, 100, ("Health: " + std::to_string(health)).c_str());
 		App::DrawLine(APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT, APP_VIRTUAL_WIDTH / 2, 0, 1.0F, 0, 0);
 	}
+	//Game over
 	else {
 		for (int i = 0; i < numEnemies; i++) {
 			enemies[i].SetActiveState(false);
